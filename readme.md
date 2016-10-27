@@ -23,18 +23,21 @@ Adobe Animate CC
 
 Start building banners
 ---------------------------------------
-Duplicate _build/JOB0000_animatecc_300x250 folder and rename it with job number, concept and pixel size.
-Open the .fla file. 
-Update stage's width and height from Properties window.
-Go to Publish Settings. On 'Advanced' tab, click 'Import New' button.
-Pick the correct template from _export_template/.
+1. Duplicate _build/JOB0000_animatecc_300x250 folder and rename it with job number, concept and pixel size.
+2. Open the .fla file. 
+3. Update stage's width and height from Properties window.
+4. Go to Publish Settings. On 'Advanced' tab, click 'Import New' button.
+⋅⋅⋅ Pick the correct template from _export_template/.
 
 ![Animate CC](etc/animatecc_publish.png)
 
-_dc_richmedia.html - DoubleClick Studio Richmedia
-_dc_std.html - DoubleClick Standard banner for DCM
-_gdn_adsense.html - GDN and AdSense banner
-_sizmek_std.html - Sizmek Standard banner
+⋅⋅* _dc_richmedia.html - DoubleClick Studio Richmedia
+
+⋅⋅* _dc_std.html - DoubleClick Standard banner for DCM
+
+⋅⋅* _gdn_adsense.html - GDN and AdSense banner
+
+⋅⋅* _sizmek_std.html - Sizmek Standard banner
 
 
 #### /psd folder
