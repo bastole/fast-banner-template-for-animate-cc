@@ -11,7 +11,7 @@ Fast Banner Template for Animate CC
 #### Features
 
 * Animate banners fast using old school Animate CC.
-* Supports DoubleClick Richmedia(Studio), DoubleClick Standard(with ClickTag), AdSense(GDN) and Sizmek(MediaMind).
+* Supports [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), DFP Standard(with DFP macros), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
 * Never worry about the rejection from QA.
 * Uses Google/Sizmek hosted Create JS. This doesn't count towards the publisher's filesize.
 * Set loops/pauses easily.
@@ -31,13 +31,11 @@ Start building banners
 
 ![Animate CC](etc/animatecc_publish.png)
 
-⋅⋅* _dc_richmedia.html - DoubleClick Studio Richmedia
-
-⋅⋅* _dc_std.html - DoubleClick Standard banner for DCM
-
-⋅⋅* _gdn_adsense.html - GDN and AdSense banner
-
-⋅⋅* _sizmek_std.html - Sizmek Standard banner
+* _dc_richmedia.html - DoubleClick Studio Richmedia
+* _dcm_std.html - DoubleClick Standard banner for DCM
+* _dfp_std.html - DoubleClick Standard banner for DFP (1st party served)
+* _gdn_adsense_adwords.html - GDN and AdSense banner
+* _sizmek_std.html - Sizmek Standard banner
 
 
 #### /psd folder
