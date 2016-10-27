@@ -1,0 +1,34 @@
+﻿<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. "DO NOT" alter the tokens in the template html as they are required during publishing.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- write your code here -->
+<meta name="ad.size" content="width=$WT,height=$HT">
+
+<script src="$TITLE.js"></script>
+
+$CREATEJS_SCRIPTS
+
+$SCRIPT_START
+var canvas, stage, exportRoot;
+function init() {
+	// --- write your JS code here ---
+	$CJS_INIT
+}
+$PLAYSOUND
+$SCRIPT_END
+
+<!-- write your code here -->
+
+</head>
+<body onload="init();" style="background-color:#FFFFFF;margin:0px;padding:0px;">
+	<canvas id="$CANVAS_ID" width="$WT" height="$HT" style="background-color:$BG"></canvas>
+</body>
+</html>
