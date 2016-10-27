@@ -5,7 +5,7 @@ Fast Banner Template for Animate CC
 
 * This is a banner template with Animate CC in fast production envirenment.
 * Build HTML5 banners with old Flash timeline control.
-* Use CraeteJS features such as Blending, blur, tight timeline sync, maskinng, asset preloader.
+* Use CraeteJS canvas features such as Blending, blur, maskinng, asset preloader etc.
 
 #### Features
 
