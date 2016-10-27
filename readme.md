@@ -1,29 +1,27 @@
 Fast Banner Template for Animate CC
 =======================
 
-![Animate CC](etc/animatecc.png)
 
 
 * This is a banner template with Animate CC in fast production envirenment.
-* For people who want to build HTML5 banners with old Flash skills.
-* No need to code.
+* Build HTML5 banners with old Flash timeline control.
+* Use CraeteJS canvas features such as Blending, blur, maskinng, asset preloader etc.
 
 #### Features
 
-* Animate banners fast using old school Animate CC.
-* Supports [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), DFP Standard(with DFP macros), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
-* Never worry about the rejection from QA.
-* Uses Google/Sizmek hosted Create JS. This doesn't count towards the publisher's filesize.
-* Set loops/pauses easily.
-* Video and Animation stops on click to comply with the recommended spec.
+* Animate banners fast using Animate CC.
+* Supports [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), DFP Standard(with DFP macro), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
+* Never worry about QA rejection.
+* Uses Google/Sizmek hosted Create JS. This doesn't count towards the ad server/publisher's max filesize limit.
 
 #### Requirements
 
+![Adobe Animate CC](etc/animatecc.png)
 Adobe Animate CC
 
 Start building banners
 ---------------------------------------
-1. Duplicate _build/JOB0000_animatecc_300x250 folder and rename it with job number, concept and pixel size.
+1. Duplicate _build/JOB0000_animatecc_300x250 folder and rename it with your jobNumber_concept_pixelDimension.
 2. Open the .fla file. 
 3. Update stage's width and height from Properties window.
 4. Go to Publish Settings. On 'Advanced' tab, click 'Import New' button.
@@ -33,7 +31,7 @@ Start building banners
 
 * _dc_richmedia.html - DoubleClick Studio Richmedia
 * _dcm_std.html - DoubleClick Standard banner for DCM
-* _dfp_std.html - DoubleClick Standard banner for DFP (1st party served)
+* _dfp_std.html - DoubleClick Standard banner for DFP (with DFP macro)
 * _gdn_adsense_adwords.html - GDN and AdSense banner
 * _sizmek_std.html - Sizmek Standard banner
 
