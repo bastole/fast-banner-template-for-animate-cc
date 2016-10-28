@@ -4,20 +4,19 @@ Fast Banner Template for Animate CC
 
 
 * This is a banner template with Animate CC in fast production envirenment.
-* Build HTML5 banners with old Flash timeline control.
-* Use CraeteJS canvas features such as Blending, blur, maskinng, asset preloader etc.
+* Build HTML5 banners with old Flash timeline control, blending, filter, vector masking and shape tween.
 
 #### Features
 
 * Animate banners fast using Animate CC.
 * Supports [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), DFP Standard(with DFP macro), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
 * Never worry about QA rejection.
-* Uses Google/Sizmek hosted Create JS. This doesn't count towards the ad server/publisher's max filesize limit.
+* Uses Google/Sizmek hosted [CreateJS](http://www.createjs.com/). This doesn't count towards the ad server/publisher's max filesize limit.
 
 #### Requirements
 
-![Adobe Animate CC](etc/animatecc.png)
-Adobe Animate CC
+[![Adobe Animate CC](etc/animatecc.png)](http://www.adobe.com/au/products/animate.html)
+
 
 Start building banners
 ---------------------------------------
