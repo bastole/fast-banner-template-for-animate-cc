@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 	NOTES:
 	1. All tokens are represented by '$' sign in the template.
 	2. You can write your code only wherever mentioned.
@@ -79,7 +79,7 @@
 		"https://s0.2mdn.net/ads/studio/cached_libs/tweenjs_0.6.1_40840f08e9fb382ae9e4a337da542ed5_min.js",
 		"https://s0.2mdn.net/ads/studio/cached_libs/movieclip_0.8.1_927f07f1635e6a2a1aa76e79f9decf86_min.js",
 		"https://s0.2mdn.net/ads/studio/cached_libs/preloadjs_0.6.1_ab03d7dc94f6d4fae428f99662cd5819_min.js",
-        Enabler.getUrl("$TITLE.js")
+        Enabler.getUrl("JOB0000_animatecc.js")
     ];
 
     function politeInit(){
@@ -128,14 +128,38 @@
 </script>
 
 <!--
-$CREATEJS_SCRIPTS
+
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="JOB0000_animatecc.js?1487559475772"></script>
 -->
 
-$SCRIPT_START
+<script>
 var canvas, stage, exportRoot;
 function initCanvas() {
 	// --- write your JS code here ---
-	$CJS_INIT
+	
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete(evt) {
+	exportRoot = new lib.JOB0000_animatecc();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
     if (window.devicePixelRatio) {
         // grab the width and height from canvas
         var height = canvas.getAttribute('height');
@@ -151,8 +175,8 @@ function initCanvas() {
     }
     
 }
-$PLAYSOUND
-$SCRIPT_END
+
+</script>
 
 <!-- write your code here -->
 
@@ -161,7 +185,7 @@ $SCRIPT_END
 <body>
     <div id="container_dc">
         <div id="content_dc">
-            <canvas id="$CANVAS_ID" width="$WT" height="$HT" style="background-color:$BG"></canvas>
+            <canvas id="canvas" width="300" height="250" style="background-color:#FFFFFF"></canvas>
         </div>
 
         <div id="loading_image_dc">Loading...</div>    

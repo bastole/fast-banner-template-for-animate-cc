@@ -19,7 +19,16 @@
 <script src="https://s0.2mdn.net/ads/studio/cached_libs/preloadjs_0.6.1_ab03d7dc94f6d4fae428f99662cd5819_min.js"></script>
 
 <script src="$TITLE.js"></script>
+<style type="text/css">
 
+    /** Global **/
+    @charset "UTF-8";
+    * { margin:0;padding:0; font-size:0;}
+ 	div {position:absolute; display:block; overflow:hidden;}
+    #canvas {
+        display:block;
+    }
+</style>
 <!--
 $CREATEJS_SCRIPTS
 -->
@@ -29,6 +38,20 @@ var canvas, stage, exportRoot;
 function init() {
 	// --- write your JS code here ---
 	$CJS_INIT
+  if (window.devicePixelRatio) {
+      // grab the width and height from canvas
+      var height = canvas.getAttribute('height');
+      var width = canvas.getAttribute('width');
+      // reset the canvas width and height with window.devicePixelRatio applied
+      canvas.setAttribute('width', Math.round(width * window.devicePixelRatio));
+      canvas.setAttribute('height', Math.round(height * window.devicePixelRatio));
+      // force the canvas back to the original size using css
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      // set CreateJS to render scaled
+      stage.scaleX = stage.scaleY = window.devicePixelRatio;
+  }
+
 }
 $PLAYSOUND
 $SCRIPT_END
