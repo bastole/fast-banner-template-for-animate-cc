@@ -1,9 +1,9 @@
-Fast Banner Template for Animate CC
+Fast Banner Template for Animate CC 2015
 =======================
 
 
 
-* This is a banner template with Animate CC in fast production envirenment.
+* This is a banner template with Animate CC 2015 in fast production envirenment.
 * Build HTML5 banners with old Flash timeline control, blending, filter, vector masking and shape tween.
 
 #### Features
@@ -12,6 +12,7 @@ Fast Banner Template for Animate CC
 * Supports [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), DFP Standard(with DFP macro), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
 * Never worry about QA rejection.
 * Uses Google/Sizmek hosted [CreateJS](http://www.createjs.com/). This doesn't count towards the ad server/publisher's max filesize limit.
+* Supports retina display.
 
 #### Requirements
 
@@ -31,7 +32,7 @@ Start building banners
 * _dc_richmedia.html - DoubleClick Studio Richmedia
 * _dcm_std.html - DoubleClick Standard banner for DCM
 * _dfp_std.html - DoubleClick Standard banner for DFP (with DFP macro)
-* _gdn_adsense_adwords.html - GDN and AdSense banner
+* _gdn_adsense_adwords.html - GDN and AdSense banner.
 * _sizmek_std.html - Sizmek Standard banner
 
 
