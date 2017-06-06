@@ -41,8 +41,8 @@ This folder contains back-up static image template in PSD.
 On e uploaded to DoubleClick, a GIF/JPG/PNG file including 'backup' in filename will automatically be assigned as a back-up image.
 
 
+
 License
 ---------------------------------------
 
 The code is available under the [MIT license](LICENSE.md).
-
