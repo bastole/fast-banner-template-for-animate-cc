@@ -1,0 +1,174 @@
+﻿<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. "DO NOT" alter the tokens in the template html as they are required during publishing.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Studio Enabler Required -->
+<script src="https://s0.2mdn.net/ads/studio/Enabler.js"> </script>
+
+<meta charset="UTF-8">
+
+<style type="text/css">
+
+    /** Global **/
+    @charset "UTF-8";
+    * { margin:0;padding:0; font-size:0;}
+ 	div {position:absolute; display:block; overflow:hidden;}
+    #canvas {
+        display:block;
+    }
+
+    #loading_image_dc {
+        left:50%;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size:10px;
+        top:50%;
+    }
+
+    #container_dc {
+        width: 100%;
+        height: 100%;
+    }
+    #content_dc, #background_exit_dc, #bg, #fade {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Invisible button for background clickthrough. */
+    #background_exit_dc {
+        top: 0px;
+        left: 0px;
+        padding: 0; margin: 0; border: 0;
+        cursor: pointer;
+        opacity: 0;
+        z-index: 400;
+        position:absolute;
+    }
+
+    :focus {outline:none;}
+    ::-moz-focus-inner {border:0;}
+
+</style>
+
+<script language="javascript">
+    //Initialize Enabler
+    if (Enabler.isInitialized()) {
+        init();
+    } else {
+        Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
+    }
+    //Run when Enabler is ready
+    function init(){
+       
+        if(Enabler.isPageLoaded()){
+            politeInit();
+        }else{
+            Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, politeInit);
+        } 
+    }
+    
+    var loadedJsNum = 0;
+    var jsObj = [
+		"https://s0.2mdn.net/ads/studio/cached_libs/easeljs_0.8.1_58add2e69ca7fbe25e8f82a2b5f6a510_min.js",
+		"https://s0.2mdn.net/ads/studio/cached_libs/tweenjs_0.6.1_40840f08e9fb382ae9e4a337da542ed5_min.js",
+		"https://s0.2mdn.net/ads/studio/cached_libs/movieclip_0.8.1_927f07f1635e6a2a1aa76e79f9decf86_min.js",
+		"https://s0.2mdn.net/ads/studio/cached_libs/preloadjs_0.6.1_ab03d7dc94f6d4fae428f99662cd5819_min.js",
+        Enabler.getUrl("$TITLE.js")
+    ];
+
+    function politeInit(){
+
+        //Load in Javascript
+        console.log("loading js : "+jsObj[loadedJsNum]);
+        loadJs(jsObj[loadedJsNum]);
+
+    }
+
+    function checkLoaded(){
+
+        console.log("loaded  js : "+jsObj[loadedJsNum]);
+        if(loadedJsNum == (jsObj.length-1)){
+            //starts animation
+            document.getElementById('loading_image_dc').style.display = "none";
+            document.getElementById('background_exit_dc').addEventListener('click', bgExitHandler, false);
+
+            document.getElementById('container_dc').style.width = document.getElementById('canvas').width+"px";
+            document.getElementById('container_dc').style.height = document.getElementById('canvas').height+"px";
+
+            initCanvas();
+        }
+        else {
+            loadedJsNum+=1; 
+            loadJs(jsObj[loadedJsNum]);
+        }
+    }
+
+    function loadJs(jsUrl){
+
+        console.log("loading js : "+jsObj[loadedJsNum]);
+
+        var extJavascript = document.createElement('script');
+        extJavascript.onload = function(){ checkLoaded(); };
+        extJavascript.src = jsUrl;
+        document.getElementsByTagName('head')[0].appendChild(extJavascript);
+
+    }
+
+	function bgExitHandler(e) {
+		//Call Exits
+		Enabler.exit('HTML5_Background_Clickthrough');
+	}
+
+</script>
+
+<!--
+$CREATEJS_SCRIPTS
+-->
+
+$SCRIPT_START
+var canvas, stage, exportRoot;
+function initCanvas() {
+	// --- write your JS code here ---
+	$CJS_INIT
+    if (window.devicePixelRatio) {
+        // grab the width and height from canvas
+        var height = canvas.getAttribute('height');
+        var width = canvas.getAttribute('width');
+        // reset the canvas width and height with window.devicePixelRatio applied
+        canvas.setAttribute('width', Math.round(width * window.devicePixelRatio));
+        canvas.setAttribute('height', Math.round(height * window.devicePixelRatio));
+        // force the canvas back to the original size using css
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+        // set CreateJS to render scaled
+        stage.scaleX = stage.scaleY = window.devicePixelRatio;
+    }
+    
+}
+$PLAYSOUND
+$SCRIPT_END
+
+<!-- write your code here -->
+
+</head>
+
+<body>
+    <div id="container_dc">
+        <div id="content_dc">
+            <canvas id="$CANVAS_ID" width="$WT" height="$HT" style="background-color:$BG"></canvas>
+        </div>
+
+        <div id="loading_image_dc">Loading...</div>    
+
+        <button id="background_exit_dc"></button>
+    </div>   
+
+</body>
+</html>
+
