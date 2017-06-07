@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--
+    NOTES:
+    1. All tokens are represented by '$' sign in the template.
+    2. You can write your code only wherever mentioned.
+    3. All occurrences of existing tokens will be replaced by their appropriate values.
+    4. Blank lines will be removed automatically.
+    5. Remove unnecessary comments before creating your template.
+-->
+<!-- DC Richmedia Expanding for AnimateCC 2017 -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="authoring-tool" content="Adobe_Animate_CC">
+    <!-- Studio Enabler Required -->
+    <script src="https://s0.2mdn.net/ads/studio/Enabler.js">
+    </script>
+    <style type="text/css">
+    /** Global **/
+    * {
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+    }
+    div {
+        position: absolute;
+        display: block;
+        overflow: hidden;
+    }
+    :focus {
+        outline: none;
+    }
+    ::-moz-focus-inner {
+        border: 0;
+    }
+    </style>
+    <!-- write your code here -->
+    <script>
+    //Initialize Enabler
+    if (Enabler.isInitialized()) {
+        initBanner();
+    } else {
+        Enabler.addEventListener(studio.events.StudioEvent.INIT, initBanner);
+    }
+    //Run when Enabler is ready
+    function initBanner() {
+        if (Enabler.isPageLoaded()) {
+            politeInit();
+        } else {
+            Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, politeInit);
+        }
+    }
+    var loadedJsNum = 0;
+    var jsObj = [
+        "https://s0.2mdn.net/ads/studio/cached_libs/createjs_2015.11.26_54e1c3722102182bb133912ad4442e19_min.js",
+        Enabler.getUrl("JOB0000_expand_1000x50to500.js")
+    ];
+    function politeInit() {
+        //Load in Javascript
+        loadJs(jsObj[loadedJsNum]);
+    }
+    function checkLoaded() {
+        console.log("loaded: " + jsObj[loadedJsNum]);
+        if (loadedJsNum == (jsObj.length - 1)) {
+            //starts animation
+            initCanvas();
+        } else {
+            loadedJsNum += 1;
+            loadJs(jsObj[loadedJsNum]);
+        }
+    }
+    function loadJs(jsUrl) {
+        var extJavascript = document.createElement('script');
+        extJavascript.onload = function() {
+            checkLoaded();
+        };
+        extJavascript.src = jsUrl;
+        document.getElementsByTagName('head')[0].appendChild(extJavascript);
+    }
+    function bgExitExpandedHandler(e) {
+        //Call Exits
+        Enabler.exit('HTML5_Expanded_Clickthrough');
+    }
+    function bgExitCollapsedHandler(e) {
+        //Call Exits
+        Enabler.exit('HTML5_Collapsed_Clickthrough');
+    }
+function show() {
+    expandedContent.style.display = 'none';
+    expandedExit.style.display = 'none';
+    collapseButton.style.display = 'none';
+    collapsedContent.style.display = 'block';
+    // collapsedExit.style.display = 'block';
+    expandButton.style.display = 'block';
+    anim_container.style.height = '50px';
+}
+function expandStartHandler() {
+    // Show expanded content.
+    expandedContent.style.display = 'block';
+    // expandedExit.style.display = 'block';
+    collapseButton.style.display = 'block';
+    collapsedContent.style.display = 'none';
+    collapsedExit.style.display = 'none';
+    expandButton.style.display = 'none';
+    //
+    anim_container.style.height = '500px';
+    Enabler.finishExpand();
+}
+function expandFinishHandler() {
+    creative.isExpanded = true;
+}
+function collapseStartHandler() {
+    // Perform collapse animation.
+    expandedContent.style.display = 'none';
+    expandedExit.style.display = 'none';
+    collapseButton.style.display = 'none';
+    collapsedContent.style.display = 'block';
+    // collapsedExit.style.display = 'block';
+    expandButton.style.display = 'block';
+    //
+    anim_container.style.height = '50px';
+    // When animation finished must call
+    Enabler.finishCollapse();
+}
+function collapseFinishHandler() {
+    creative.isExpanded = false;
+}
+function onCollapseClickHandler() {
+    Enabler.requestCollapse();
+    exportRoot.gotoAndPlay('collapsed');
+    Enabler.stopTimer('Panel Expansion');
+}
+function onExpandHandler() {
+    Enabler.requestExpand();
+    exportRoot.gotoAndPlay('expanded');
+    Enabler.startTimer('Panel Expansion');
+}
+    </script>
+<!--
+<script src="./createjs-2015.11.26.min.js"></script>
+<script src="JOB0000_expand_1000x50to500.js"></script>    
+ -->
+    <script> 
+    var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+    function initCanvas() {
+        canvas = document.getElementById("canvas");
+        anim_container = document.getElementById("animation_container");
+        dom_overlay_container = document.getElementById("dom_overlay_container");
+        expandedExit = document.getElementById('expanded-exit');
+        expandedContent = document.getElementById('expanded-state');
+        expandButton = document.getElementById('expand-button');
+        collapsedExit = document.getElementById('collapsed-exit');
+        collapsedContent = document.getElementById('collapsed-state');
+        collapseButton = document.getElementById('collapse-button');
+        Enabler.setStartExpanded(false);
+        Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStartHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH, expandFinishHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START, collapseStartHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH, collapseFinishHandler);
+        expandedExit.addEventListener('click', bgExitExpandedHandler);
+        collapsedExit.addEventListener('click', bgExitCollapsedHandler);
+        expandButton.addEventListener('click', onExpandHandler, false);
+        collapseButton.addEventListener('click', onCollapseClickHandler, false);
+        show();
+	images = images||{};
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+    }
+function handleFileLoad(evt) { 
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }  
+}
+function handleComplete(evt) {
+        //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	exportRoot = new lib.JOB0000_expand_1000x50to500();
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);   
+        //Registers the "tick" event listener.
+        fnStartAnimation = function() {
+		createjs.Ticker.setFPS(lib.properties.fps);
+		createjs.Ticker.addEventListener("tick", stage);
+	}        
+        //Code to support hidpi screens and responsive scaling.
+	function makeResponsive(isResp, respDim, isScale, scaleType) {		
+		var lastW, lastH, lastS=1;		
+		window.addEventListener('resize', resizeCanvas);		
+		resizeCanvas();		
+		function resizeCanvas() {			
+			var w = lib.properties.width, h = lib.properties.height;			
+			var iw = window.innerWidth, ih=window.innerHeight;			
+			var pRatio = window.devicePixelRatio || 1, xRatio=iw/w, yRatio=ih/h, sRatio=1;			
+			if(isResp) {                
+				if((respDim=='width'&&lastW==iw) || (respDim=='height'&&lastH==ih)) {                    
+					sRatio = lastS;                
+				}				
+				else if(!isScale) {					
+					if(iw<w || ih<h)						
+						sRatio = Math.min(xRatio, yRatio);				
+				}				
+				else if(scaleType==1) {					
+					sRatio = Math.min(xRatio, yRatio);				
+				}				
+				else if(scaleType==2) {					
+					sRatio = Math.max(xRatio, yRatio);				
+				}			
+			}			
+			canvas.width = w*pRatio*sRatio;			
+			canvas.height = h*pRatio*sRatio;
+			canvas.style.width = dom_overlay_container.style.width = anim_container.style.width =  w*sRatio+'px';				
+			canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h*sRatio+'px';
+			stage.scaleX = pRatio*sRatio;			
+			stage.scaleY = pRatio*sRatio;			
+			lastW = iw; lastH = ih; lastS = sRatio;		
+		}
+	}
+	makeResponsive(false,'both',false,1); 
+	fnStartAnimation();
+}
+    </script>
+</head>
+<body style="margin:0px;">
+    <div id="animation_container" style="overflow: hidden; background-color:rgba(255, 255, 255, 1.00); width:1000px; height:500px">
+        <canvas id="canvas" width="1000" height="500" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1000px; height:500px; position: absolute; left: 0px; top: 0px; display: block;">
+        </div>
+        <div id="collapsed-state" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; padding: 0; margin: 0; border: 0;">
+            <button id="collapsed-exit" style="overflow:hidden; width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
+            <div id="expand-button" class="button"></div>
+        </div>
+        <div id="expanded-state" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; padding: 0; margin: 0; border: 0;">
+            <button id="expanded-exit" style="overflow:hidden; width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
+            <div id="collapse-button" class="button">X</div>
+        </div>
+    </div>
+    <script>
+        Enabler.setExpandingPixelOffsets(0, 0, 1000, 500);
+    </script>
+</body>
+</html>
