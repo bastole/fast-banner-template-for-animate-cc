@@ -43,6 +43,9 @@
     <!-- write your code here -->
 
     <script>
+    //set collapsed width and height
+    var collapsed = {width:'1000px', height:'50px'};
+
     //Initialize Enabler
     if (Enabler.isInitialized()) {
         initBanner();
@@ -97,7 +100,10 @@
     }
 
     function bgExitExpandedHandler(e) {
-        //Call Exits
+        Enabler.requestCollapse();
+        Enabler.stopTimer('Panel Expansion');
+        exportRoot.gotoAndPlay('collapsed idle');
+
         Enabler.exit('HTML5_Expanded_Clickthrough');
     }
     function bgExitCollapsedHandler(e) {
@@ -110,26 +116,28 @@ function show() {
     expandedExit.style.display = 'none';
     collapseButton.style.display = 'none';
     collapsedContent.style.display = 'block';
-    // collapsedExit.style.display = 'block';
+    collapsedExit.style.display = 'block';
     expandButton.style.display = 'block';
-    anim_container.style.height = '50px';
+    anim_container.style.width = collapsed.width;
+    anim_container.style.height = collapsed.height;
 }
 function expandStartHandler() {
     // Show expanded content.
     expandedContent.style.display = 'block';
-    // expandedExit.style.display = 'block';
+    expandedExit.style.display = 'block';
     collapseButton.style.display = 'block';
     collapsedContent.style.display = 'none';
     collapsedExit.style.display = 'none';
     expandButton.style.display = 'none';
     //
-    anim_container.style.height = '500px';
+    anim_container.style.width = '$WTpx';
+    anim_container.style.height = '$HTpx';
 
     Enabler.finishExpand();
 }
 
 function expandFinishHandler() {
-    creative.isExpanded = true;
+    // creativeHasExpanded = true;
 }
 
 function collapseStartHandler() {
@@ -138,18 +146,18 @@ function collapseStartHandler() {
     expandedExit.style.display = 'none';
     collapseButton.style.display = 'none';
     collapsedContent.style.display = 'block';
-    // collapsedExit.style.display = 'block';
+    collapsedExit.style.display = 'block';
     expandButton.style.display = 'block';
     //
-    anim_container.style.height = '50px';
-
+    anim_container.style.width = collapsed.width;
+    anim_container.style.height = collapsed.height;
 
     // When animation finished must call
     Enabler.finishCollapse();
 }
 
 function collapseFinishHandler() {
-    creative.isExpanded = false;
+    // creativeHasExpanded = false;
 }
 
 function onCollapseClickHandler() {
@@ -227,18 +235,17 @@ function onExpandHandler() {
         <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:$WTpx; height:$HTpx; position: absolute; left: 0px; top: 0px; display: $CANVAS_DISP;">
         </div>
         <div id="collapsed-state" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; padding: 0; margin: 0; border: 0;">
-            <button id="collapsed-exit" style="overflow:hidden; width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
-            <div id="expand-button" class="button"></div>
+            <button id="collapsed-exit" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
+            <div id="expand-button" class="button" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></div>
         </div>
         <div id="expanded-state" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; padding: 0; margin: 0; border: 0;">
-            <button id="expanded-exit" style="overflow:hidden; width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
-            <div id="collapse-button" class="button">X</div>
+            <button id="expanded-exit" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
+            <div id="collapse-button" class="button" style="top: 4px; right: 4px; display: none; background-color: rgba(0,0,0,0.8); color:white; border-radius: 20px; padding: 5px 8px; font-family: Arial, sans-serif; font-size: 13px;">X</div>
         </div>
     </div>
+    $PRELOADER_DIV
     <script>
         Enabler.setExpandingPixelOffsets(0, 0, $WT, $HT);
     </script>
-
-    $PRELOADER_DIV
 </body>
 </html>
