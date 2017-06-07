@@ -1,4 +1,4 @@
-Fast Banner Template for Animate CC
+Fast Banner Template for Animate CC 2017
 =======================
 
 
@@ -22,8 +22,8 @@ Fast Banner Template for Animate CC
 
 Start building banners
 ---------------------------------------
-1. Duplicate _build/JOB0000_animatecc_300x250 folder and rename it with your jobNumber_concept_pixelDimension.
-2. Open the .fla file. 
+1. Duplicate _build/JOB0000_template_300x250 folder and rename it with your jobNumber_concept_pixelDimension.
+2. Open the .fla file.
 3. Update stage's width and height from Properties window.
 4. Go to Publish Settings. On 'Advanced' tab, click 'Import New' button.
 ⋅⋅⋅ Pick the correct template from _export_template/[your animacecc version].
@@ -39,7 +39,6 @@ Start building banners
 #### /psd folder
 This folder contains back-up static image template in PSD. 
 On e uploaded to DoubleClick, a GIF/JPG/PNG file including 'backup' in filename will automatically be assigned as a back-up image.
-
 
 
 License
