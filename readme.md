@@ -30,11 +30,18 @@ Start building banners
 
 ![Animate CC](etc/animatecc_publish.png)
 
+* _dc_richmedia_expanding_[version].html - DoubleClick Studio Expanding Richmedia
 * _dc_richmedia_[version].html - DoubleClick Studio Richmedia
 * _dcm_std.html_[version] - DoubleClick Standard banner for DCM
 * _gdn_adsense_adwords_[version].html - GDN and AdSense banner
 * _sizmek_std_[version].html - Sizmek Standard banner
 
+5. Animate and publish to HTML.
+6. Note that for Expanding richmedia, you have to set the collapsed dimension from html file after the banner is published. 
+
+```javascript
+var collapsed = {width:'1000px', height:'50px'};
+```
 
 #### /psd folder
 This folder contains back-up static image template in PSD. 
