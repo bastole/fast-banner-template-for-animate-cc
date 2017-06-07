@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<!--
+    NOTES:
+    1. All tokens are represented by '$' sign in the template.
+    2. You can write your code only wherever mentioned.
+    3. All occurrences of existing tokens will be replaced by their appropriate values.
+    4. Blank lines will be removed automatically.
+    5. Remove unnecessary comments before creating your template.
+-->
+<!-- DC Richmedia Expanding for AnimateCC 2017 -->
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="authoring-tool" content="$VERSION">
+    <!-- Studio Enabler Required -->
+    <script src="https://s0.2mdn.net/ads/studio/Enabler.js">
+    </script>
+    <style type="text/css">
+    /** Global **/
+    
+    * {
+        margin: 0;
+        padding: 0;
+        font-size: 0;
+    }
+    
+    div {
+        position: absolute;
+        display: block;
+        overflow: hidden;
+    }
+
+    :focus {
+        outline: none;
+    }
+    
+    ::-moz-focus-inner {
+        border: 0;
+    }
+    </style>
+
+    <!-- write your code here -->
+
+    <script>
+    //set collapsed width and height
+    var collapsed = {width:'1000px', height:'50px'};
+
+    //Initialize Enabler
+    if (Enabler.isInitialized()) {
+        initBanner();
+    } else {
+        Enabler.addEventListener(studio.events.StudioEvent.INIT, initBanner);
+    }
+    //Run when Enabler is ready
+    function initBanner() {
+
+        if (Enabler.isPageLoaded()) {
+            politeInit();
+        } else {
+            Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, politeInit);
+        }
+    }
+
+    var loadedJsNum = 0;
+    var jsObj = [
+        "https://s0.2mdn.net/ads/studio/cached_libs/createjs_2015.11.26_54e1c3722102182bb133912ad4442e19_min.js",
+        Enabler.getUrl("$TITLE.js")
+    ];
+
+    function politeInit() {
+
+        //Load in Javascript
+        loadJs(jsObj[loadedJsNum]);
+
+    }
+
+    function checkLoaded() {
+
+        console.log("loaded: " + jsObj[loadedJsNum]);
+        if (loadedJsNum == (jsObj.length - 1)) {
+
+            //starts animation
+            initCanvas();
+        } else {
+            loadedJsNum += 1;
+            loadJs(jsObj[loadedJsNum]);
+        }
+    }
+
+    function loadJs(jsUrl) {
+
+        var extJavascript = document.createElement('script');
+        extJavascript.onload = function() {
+            checkLoaded();
+        };
+        extJavascript.src = jsUrl;
+        document.getElementsByTagName('head')[0].appendChild(extJavascript);
+
+    }
+
+    function bgExitExpandedHandler(e) {
+        Enabler.requestCollapse();
+        Enabler.stopTimer('Panel Expansion');
+        exportRoot.gotoAndPlay('collapsed idle');
+
+        Enabler.exit('HTML5_Expanded_Clickthrough');
+    }
+    function bgExitCollapsedHandler(e) {
+        //Call Exits
+        Enabler.exit('HTML5_Collapsed_Clickthrough');
+    }
+
+function show() {
+    expandedContent.style.display = 'none';
+    expandedExit.style.display = 'none';
+    collapseButton.style.display = 'none';
+    collapsedContent.style.display = 'block';
+    collapsedExit.style.display = 'block';
+    expandButton.style.display = 'block';
+    anim_container.style.width = collapsed.width;
+    anim_container.style.height = collapsed.height;
+}
+function expandStartHandler() {
+    // Show expanded content.
+    expandedContent.style.display = 'block';
+    expandedExit.style.display = 'block';
+    collapseButton.style.display = 'block';
+    collapsedContent.style.display = 'none';
+    collapsedExit.style.display = 'none';
+    expandButton.style.display = 'none';
+    //
+    anim_container.style.width = '$WTpx';
+    anim_container.style.height = '$HTpx';
+
+    Enabler.finishExpand();
+}
+
+function expandFinishHandler() {
+    // creativeHasExpanded = true;
+}
+
+function collapseStartHandler() {
+    // Perform collapse animation.
+    expandedContent.style.display = 'none';
+    expandedExit.style.display = 'none';
+    collapseButton.style.display = 'none';
+    collapsedContent.style.display = 'block';
+    collapsedExit.style.display = 'block';
+    expandButton.style.display = 'block';
+    //
+    anim_container.style.width = collapsed.width;
+    anim_container.style.height = collapsed.height;
+
+    // When animation finished must call
+    Enabler.finishCollapse();
+}
+
+function collapseFinishHandler() {
+    // creativeHasExpanded = false;
+}
+
+function onCollapseClickHandler() {
+    Enabler.requestCollapse();
+    exportRoot.gotoAndPlay('collapsed');
+
+    Enabler.stopTimer('Panel Expansion');
+}
+
+function onExpandHandler() {
+    Enabler.requestExpand();
+    exportRoot.gotoAndPlay('expanded');
+
+    Enabler.startTimer('Panel Expansion');
+}
+
+    </script>
+<!--
+    $CENTER_STYLE
+    $CREATEJS_LIBRARY_SCRIPTS
+    $ANIMATE_CC_SCRIPTS    
+ -->
+
+    $SCRIPT_START 
+
+    var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+
+    function initCanvas() {
+        canvas = document.getElementById("$CANVAS_ID");
+        anim_container = document.getElementById("$ANIM_CONTAINER_ID");
+        dom_overlay_container = document.getElementById("dom_overlay_container");
+
+        expandedExit = document.getElementById('expanded-exit');
+        expandedContent = document.getElementById('expanded-state');
+        expandButton = document.getElementById('expand-button');
+        collapsedExit = document.getElementById('collapsed-exit');
+        collapsedContent = document.getElementById('collapsed-state');
+        collapseButton = document.getElementById('collapse-button');
+        Enabler.setStartExpanded(false);
+
+        Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStartHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH, expandFinishHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START, collapseStartHandler);
+        Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH, collapseFinishHandler);
+        expandedExit.addEventListener('click', bgExitExpandedHandler);
+        collapsedExit.addEventListener('click', bgExitCollapsedHandler);
+        expandButton.addEventListener('click', onExpandHandler, false);
+        collapseButton.addEventListener('click', onCollapseClickHandler, false);
+
+        show();
+
+        $CREATE_LOADER
+        $LOAD_MANIFEST
+        $PRELOAD_ASSETS
+    }
+    $HANDLE_FILE_LOAD_START 
+        $HANDLE_FILE_LOAD_BODY  
+    $HANDLE_FILE_LOAD_END
+    $HANDLE_COMPLETE_START
+        //This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+        $CREATE_STAGE   
+        //Registers the "tick" event listener.
+        $START_ANIMATION        
+        //Code to support hidpi screens and responsive scaling.
+        $RESP_HIDPI 
+    $HANDLE_COMPLETE_END
+    $PLAYSOUND
+    $SCRIPT_END
+    
+</head>
+
+<body style="margin:0px;">
+    <div id="$ANIM_CONTAINER_ID" style="overflow: hidden; background-color:$BG; width:$WTpx; height:$HTpx">
+        <canvas id="$CANVAS_ID" width="$WT" height="$HT" style="position: absolute; display: $CANVAS_DISP; background-color:$BG;"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:$WTpx; height:$HTpx; position: absolute; left: 0px; top: 0px; display: $CANVAS_DISP;">
+        </div>
+        <div id="collapsed-state" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; padding: 0; margin: 0; border: 0;">
+            <button id="collapsed-exit" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
+            <div id="expand-button" class="button" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></div>
+        </div>
+        <div id="expanded-state" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; padding: 0; margin: 0; border: 0;">
+            <button id="expanded-exit" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
+            <div id="collapse-button" class="button" style="top: 4px; right: 4px; display: none; background-color: rgba(0,0,0,0.8); color:white; border-radius: 20px; padding: 5px 8px; font-family: Arial, sans-serif; font-size: 13px;">X</div>
+        </div>
+    </div>
+    $PRELOADER_DIV
+    <script>
+        Enabler.setExpandingPixelOffsets(0, 0, $WT, $HT);
+    </script>
+</body>
+</html>
