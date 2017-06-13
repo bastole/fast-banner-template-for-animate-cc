@@ -37,7 +37,7 @@ Start building banners
 * _sizmek_std_[version].html - Sizmek Standard banner
 
 5. Animate and publish to HTML.
-6. Note that for Expanding richmedia, you have to set the collapsed dimension from html file after the banner is published. 
+6. Note that for Expanding richmedia, you have to use JOB0000_expand_1000x50to500.fla and set the collapsed dimension from html file after the banner is published. 
 
 ```javascript
 var collapsed = {width:'1000px', height:'50px'};

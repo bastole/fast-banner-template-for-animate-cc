@@ -1,0 +1,14 @@
+build/*/*.html
+build/*/*.js
+build/*/*.jpg
+build/*/*.png
+build/*/*.gif
+
+*.ai
+*.mp4
+*.ogv
+*.ogg
+*.flv
+*.mov
+*.webm
+*.zip
