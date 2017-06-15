@@ -4,15 +4,15 @@ Fast Banner Template for Animate CC 2017
 
 
 * This is a banner template with Animate CC in fast production envirenment.
-* Build HTML5 banners with oldschool Flash timeline control, blending, filter, vector masking and shape tween.
+* Build HTML5 banners with old school Flash features - timeline animation, blending, filter, vector masking and shape tween.
 
 #### Features
 
 * Animate banners fast using Animate CC.
 * Supports version 2017(latest) and 2015.2.
 * Supports [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
-* Never worry about DC's QA rejection again.
-* Uses Google/Sizmek hosted [CreateJS](http://www.createjs.com/). This doesn't count towards the ad server/publisher's max filesize limit.
+* Never worry about DC's QA rejection again!
+* Uses Google/Sizmek hosted [CreateJS](http://www.createjs.com/). This doesn't count towards filesize.
 * Polite loading with preloader
 
 #### Requirements
@@ -22,28 +22,31 @@ Fast Banner Template for Animate CC 2017
 
 Start building banners
 ---------------------------------------
-1. Duplicate _build/JOB0000_template_300x250 folder and rename it with your jobNumber_concept_pixelDimension.
+1. Duplicate `_build/JOB0000_template_300x250` folder and rename it with your jobNumber_concept_pixelDimension. (For Expanding richmedia, use `_build/JOB0000_expand_1000x50to500`.)
+
 2. Open the .fla file.
-3. Update stage's width and height from Properties window.
+3. Update the stage width and height from Properties window.
 4. Go to Publish Settings. On 'Advanced' tab, click 'Import New' button.
-⋅⋅⋅ Pick the correct template from _export_template/[your animacecc version].
+⋅⋅⋅ Pick the correct template from `_export_template/[version]`.
 
 ![Animate CC](etc/animatecc_publish.png)
 
-* _dc_richmedia_expanding_[version].html - DoubleClick Studio Expanding Richmedia
-* _dc_richmedia_[version].html - DoubleClick Studio Richmedia
-* _dcm_std.html_[version] - DoubleClick Standard banner for DCM
-* _gdn_adsense_adwords_[version].html - GDN and AdSense banner
-* _sizmek_std_[version].html - Sizmek Standard banner
+* `_dc_richmedia_[version].html` - DoubleClick Studio Richmedia
+* `_dc_richmedia_expanding_[version].html` - DoubleClick Studio Expanding Richmedia
+* `_dc_richmedia_interstitial_[version].html` - DoubleClick Studio Interstitial Richmedia
+* `_dc_richmedia_[version].html` - DoubleClick Studio Richmedia
+* `_dcm_std_[version].html` - DoubleClick Standard banner for DCM
+* `_gdn_adsense_adwords_[version].html` - GDN and AdSense banner
+* `_sizmek_std_[version].html` - Sizmek Standard banner
 
 5. Animate and publish to HTML.
-6. Note that for Expanding richmedia, you have to use JOB0000_expand_1000x50to500.fla and set the collapsed dimension from html file after the banner is published. 
+6. For Expanding richmedia, set the collapsed dimension from html file after the banner is published. 
 
 ```javascript
 var collapsed = {width:'1000px', height:'50px'};
 ```
 
-#### /psd folder
+#### `/psd` folder
 This folder contains back-up static image template in PSD. 
 On e uploaded to DoubleClick, a GIF/JPG/PNG file including 'backup' in filename will automatically be assigned as a back-up image.
 
