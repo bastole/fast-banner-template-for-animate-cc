@@ -8,12 +8,13 @@ Fast Banner Template for Animate CC 2017
 
 #### Features
 
-* Animate banners fast using Animate CC.
-* Supports version 2017(latest) and 2015.2.
-* Supports [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
+* [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
+* support for DC expanding/pushdown and interstitial richmedia
 * Never worry about DC's QA rejection again!
 * Uses Google/Sizmek hosted [CreateJS](http://www.createjs.com/). This doesn't count towards filesize.
 * Polite loading with preloader
+* Supports version 2017(latest) and 2015.2.
+
 
 #### Requirements
 
