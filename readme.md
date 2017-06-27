@@ -13,7 +13,7 @@ Fast Banner Template for Animate CC 2017
 * Never worry about DC's QA rejection again!
 * Uses Google/Sizmek hosted [CreateJS](http://www.createjs.com/). This doesn't count towards filesize.
 * Polite loading with preloader
-* Supports version 2017(latest) and 2015.2.
+* Supports version 2017(latest).
 
 
 #### Requirements
@@ -28,17 +28,17 @@ Start building banners
 2. Open the .fla file.
 3. Update the stage width and height from Properties window.
 4. Go to Publish Settings. On 'Advanced' tab, click 'Import New' button.
-⋅⋅⋅ Pick the correct template from `_export_template/[version]`.
+⋅⋅⋅ Pick the correct template from `_export_template/v2017`.
 
 ![Animate CC](etc/animatecc_publish.png)
 
-* `_dc_richmedia_[version].html` - DoubleClick Studio Richmedia
-* `_dc_richmedia_expanding_[version].html` - DoubleClick Studio Expanding Richmedia
-* `_dc_richmedia_interstitial_[version].html` - DoubleClick Studio Interstitial Richmedia
-* `_dc_richmedia_[version].html` - DoubleClick Studio Richmedia
-* `_dcm_std_[version].html` - DoubleClick Standard banner for DCM
-* `_gdn_adsense_adwords_[version].html` - GDN and AdSense banner
-* `_sizmek_std_[version].html` - Sizmek Standard banner
+* `_dc_richmedia_v2017.html` - DoubleClick Studio Richmedia
+* `_dc_richmedia_expanding_v2017.html` - DoubleClick Studio Expanding Richmedia
+* `_dc_richmedia_interstitial_v2017.html` - DoubleClick Studio Interstitial Richmedia
+* `_dc_richmedia_v2017.html` - DoubleClick Studio Richmedia
+* `_dcm_std_v2017.html` - DoubleClick Standard banner for DCM
+* `_gdn_adsense_adwords_v2017.html` - GDN and AdSense banner
+* `_sizmek_std_v2017.html` - Sizmek Standard banner
 
 5. Animate and publish to HTML.
 6. For Expanding richmedia, set the collapsed dimension from html file after the banner is published. 
