@@ -30,6 +30,7 @@ Start building banners
 4. Go to Publish Settings. On 'Advanced' tab, click 'Import New' button.
 ⋅⋅⋅ Pick the correct template from `_export_template/v2017`.
 
+
 ![Animate CC](etc/animatecc_publish.png)
 
 * `_dc_richmedia_v2017.html` - DoubleClick Studio Richmedia
