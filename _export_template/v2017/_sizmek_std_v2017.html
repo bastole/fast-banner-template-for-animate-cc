@@ -45,6 +45,9 @@
     $SCRIPT_START 
 
     var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+    var prevFrame = null, isPlaying = true;
+
+    var creativeName = "$TITLE";
 
     function init() {
         canvas = document.getElementById("$CANVAS_ID");
@@ -64,8 +67,32 @@
         $START_ANIMATION        
         //Code to support hidpi screens and responsive scaling.
         $RESP_HIDPI 
+
+
+    createjs.Ticker.addEventListener("tick", tick); createjs.Ticker.addEventListener("tick", stage);
+    var callOutside = window.parent.iFrameAnimationLoaded;
+    if (typeof window.parent.iFrameAnimationLoaded !== "undefined") { 
+        callOutside(creativeName);
+    }
+
     $HANDLE_COMPLETE_END
     $PLAYSOUND
+
+function tick(evt){
+    if(isPlaying){
+        if(exportRoot.currentFrame != prevFrame){
+            //console.log(exportRoot.currentFrame);
+            prevFrame = exportRoot.currentFrame;
+            var callOutsideToTrackPosition = window.parent.moveSliderToCurrentFrame;
+            if (typeof callOutsideToTrackPosition !== "undefined") {
+                callOutsideToTrackPosition(creativeName, Math.round(exportRoot.currentFrame/exportRoot.totalFrames*10000)*0.01);
+
+            }
+        }
+    }
+
+}
+    
     $SCRIPT_END
     
 </head>
