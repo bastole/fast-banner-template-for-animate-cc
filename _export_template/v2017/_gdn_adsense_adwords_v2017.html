@@ -35,9 +35,9 @@
 
     <!-- write your code here -->
 
-    <script>
+<!--     <script>
     var clickTag = "http://www.google.com"; 
-    </script>
+    </script> -->
     <script src="https://s0.2mdn.net/ads/studio/cached_libs/createjs_2015.11.26_54e1c3722102182bb133912ad4442e19_min.js">
     </script>
 <!--
@@ -89,14 +89,14 @@ function tick(evt){
             prevFrame = exportRoot.currentFrame;
             var callOutsideToTrackPosition = window.parent.moveSliderToCurrentFrame;
             if (typeof callOutsideToTrackPosition !== "undefined") {
-                callOutsideToTrackPosition(creativeName, Math.round(exportRoot.currentFrame/exportRoot.totalFrames*10000)*0.01);
+                callOutsideToTrackPosition(creativeName, exportRoot.currentFrame, exportRoot.totalFrames);
 
             }
         }
     }
 
 }
-    
+
     $SCRIPT_END
 
 </head>
