@@ -74,8 +74,8 @@
 
 
     createjs.Ticker.addEventListener("tick", tick); createjs.Ticker.addEventListener("tick", stage);
-    var callOutside = window.parent.iFrameAnimationLoaded;
-    if (typeof window.parent.iFrameAnimationLoaded !== "undefined") { 
+    try{ var callOutside = window.parent.iFrameAnimationLoaded; } catch(e){}
+    if (typeof callOutside !== "undefined") { 
         callOutside(creativeName);
     }
 
@@ -87,7 +87,7 @@ function tick(evt){
         if(exportRoot.currentFrame != prevFrame){
             //console.log(exportRoot.currentFrame);
             prevFrame = exportRoot.currentFrame;
-            var callOutsideToTrackPosition = window.parent.moveSliderToCurrentFrame;
+            try{ var callOutsideToTrackPosition = window.parent.moveSliderToCurrentFrame; } catch(e){}
             if (typeof callOutsideToTrackPosition !== "undefined") {
                 callOutsideToTrackPosition(creativeName, exportRoot.currentFrame, exportRoot.totalFrames);
 
