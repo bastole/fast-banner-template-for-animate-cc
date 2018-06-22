@@ -1,4 +1,4 @@
-Fast Banner Template for Animate CC 2017
+Fast Banner Template for Animate CC 2018
 =======================
 
 
@@ -9,11 +9,12 @@ Fast Banner Template for Animate CC 2017
 #### Features
 
 * [DoubleClick Richmedia(Studio)](https://support.google.com/richmedia/answer/2672545), [DCM Standard(with ClickTag)](https://support.google.com/richmedia/answer/6279525?hl=en), [AdSense/Adwords/GDN Image ads](https://support.google.com/adwordspolicy/answer/176108?hl=en-AU) and [Sizmek(MediaMind)](https://www.sizmek.com/html5-guides/).
-* support for DC expanding/pushdown and interstitial richmedia
-* Never worry about DC's QA rejection again!
+* support for DC expanding/pushdown and interstitial richmedia.
+* Never worry about DC's QA rejection.
 * Uses Google/Sizmek hosted [CreateJS](http://www.createjs.com/). This doesn't count towards filesize.
-* Polite loading with preloader
-* Supports version 2017(latest).
+* Polite loading with preloader.
+* Supports mouse rollover.
+* Supports version 2018(latest).
 
 
 #### Requirements
@@ -33,13 +34,12 @@ Start building banners
 
 ![Animate CC](etc/animatecc_publish.png)
 
-* `_dc_richmedia_v2017.html` - DoubleClick Studio Richmedia
-* `_dc_richmedia_expanding_v2017.html` - DoubleClick Studio Expanding Richmedia
-* `_dc_richmedia_interstitial_v2017.html` - DoubleClick Studio Interstitial Richmedia
-* `_dc_richmedia_v2017.html` - DoubleClick Studio Richmedia
-* `_dcm_std_v2017.html` - DoubleClick Standard banner for DCM
-* `_gdn_adsense_adwords_v2017.html` - GDN and AdSense banner
-* `_sizmek_std_v2017.html` - Sizmek Standard banner
+* `_dc_richmedia_v2018.html` - DoubleClick Studio Richmedia
+* `_dc_richmedia_expanding_v2018.html` - DoubleClick Studio Expanding Richmedia
+* `_dc_richmedia_interstitial_v2018.html` - DoubleClick Studio Interstitial Richmedia
+* `_dc_richmedia_v2018.html` - DoubleClick Studio Richmedia
+* `_dcm_std_v2018.html` - DoubleClick Standard banner for DCM, GDN and AdSense banner
+* `_sizmek_std_v2018.html` - Sizmek Standard banner
 
 5. Animate and publish to HTML.
 6. For Expanding richmedia, set the collapsed dimension from html file after the banner is published. 
@@ -50,7 +50,7 @@ var collapsed = {width:'1000px', height:'50px'};
 
 #### `/psd` folder
 This folder contains back-up static image template in PSD. 
-On e uploaded to DoubleClick, a GIF/JPG/PNG file including 'backup' in filename will automatically be assigned as a back-up image.
+Tip: add a word 'backup' in the filename and DC will automatically recognize it as a back-up image.
 
 
 License

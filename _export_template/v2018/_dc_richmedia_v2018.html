@@ -7,27 +7,34 @@
     4. Blank lines will be removed automatically.
     5. Remove unnecessary comments before creating your template.
 -->
-<!-- GDN Adsense Adwords for AnimateCC 2017 -->
+<!-- DCM Richmedia -->
+<!-- For AnimateCC 2017 and 2018 -->
 <html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="authoring-tool" content="$VERSION">
-    <meta name="ad.size" content="width=$WT,height=$HT">
-
+    <!-- Studio Enabler Required -->
+    <script src="https://s0.2mdn.net/ads/studio/Enabler.js">
+    </script>
     <style type="text/css">
-    /** Global **/
-    
     * {
         margin: 0;
         padding: 0;
         font-size: 0;
     }
-
+    div {
+        position: absolute;
+        display: block;
+        overflow: hidden;
+    }
+    #_preload_div_ {
+        box-sizing: border-box;
+        border: 1px solid black;
+    }
     :focus {
         outline: none;
     }
-    
     ::-moz-focus-inner {
         border: 0;
     }
@@ -35,25 +42,72 @@
 
     <!-- write your code here -->
 
-<!--     <script>
-    var clickTag = "http://www.google.com"; 
-    </script> -->
-    <script src="https://s0.2mdn.net/ads/studio/cached_libs/createjs_2015.11.26_54e1c3722102182bb133912ad4442e19_min.js">
+    <script>
+    //Initialize Enabler
+    if (Enabler.isInitialized()) {
+        initBanner();
+    } else {
+        Enabler.addEventListener(studio.events.StudioEvent.INIT, initBanner);
+    }
+    //Run when Enabler is ready
+    function initBanner() {
+
+        if (Enabler.isPageLoaded()) {
+            politeInit();
+        } else {
+            Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, politeInit);
+        }
+    }
+
+    var loadedJsNum = 0;
+    var creativeName = "$TITLE";
+    var jsObj = [
+        "https://s0.2mdn.net/ads/studio/cached_libs/createjs_2015.11.26_54e1c3722102182bb133912ad4442e19_min.js",
+        Enabler.getUrl(creativeName+".js")
+    ];
+
+    function politeInit() {
+
+        //Load in Javascript
+        loadJs(jsObj[loadedJsNum]);
+
+    }
+
+    function checkLoaded() {
+        if (loadedJsNum == (jsObj.length - 1)) {
+            document.getElementById('background_exit_dc').addEventListener('click', bgExitHandler, false);
+            //starts animation
+            initCanvas();
+        } else {
+            loadedJsNum += 1;
+            loadJs(jsObj[loadedJsNum]);
+        }
+    }
+
+    function loadJs(jsUrl) {
+        Enabler.loadScript(jsUrl, function(){
+                console.log("... " + jsUrl)
+                checkLoaded();
+            });
+    }
+
+    function bgExitHandler(e) {
+        //Call Exits
+        Enabler.exit('HTML5_Background_Clickthrough');
+    }
     </script>
 <!--
+    $CENTER_STYLE
     $CREATEJS_LIBRARY_SCRIPTS
- -->
-
     $ANIMATE_CC_SCRIPTS    
+ -->
 
     $SCRIPT_START 
 
     var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
     var prevFrame = null, isPlaying = true;
 
-    var creativeName = "$TITLE";
-
-    function init() {
+    function initCanvas() {
         canvas = document.getElementById("$CANVAS_ID");
         anim_container = document.getElementById("$ANIM_CONTAINER_ID");
         dom_overlay_container = document.getElementById("dom_overlay_container");
@@ -98,15 +152,15 @@ function tick(evt){
 }
 
     $SCRIPT_END
-
+    
 </head>
 
-<body onload="init();" style="margin:0px;">
+<body style="margin:0px;">
     <div id="$ANIM_CONTAINER_ID" style="background-color:$BG; width:$WTpx; height:$HTpx">
         <canvas id="$CANVAS_ID" width="$WT" height="$HT" style="position: absolute; display: $CANVAS_DISP; background-color:$BG;"></canvas>
         <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:$WTpx; height:$HTpx; position: absolute; left: 0px; top: 0px; display: $CANVAS_DISP;">
         </div>
-
+        <button id="background_exit_dc" style="overflow:hidden; width:$WTpx; height:$HTpx; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer;"></button>
     </div>
     $PRELOADER_DIV
 </body>

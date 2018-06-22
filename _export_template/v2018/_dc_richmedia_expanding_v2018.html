@@ -8,7 +8,7 @@
     5. Remove unnecessary comments before creating your template.
 -->
 <!-- DCM Richmedia Expanding -->
-<!-- For AnimateCC 2017 -->
+<!-- For AnimateCC 2017 and 2018 -->
 <html>
 
 <head>
@@ -18,24 +18,23 @@
     <script src="https://s0.2mdn.net/ads/studio/Enabler.js">
     </script>
     <style type="text/css">
-    /** Global **/
-    
     * {
         margin: 0;
         padding: 0;
         font-size: 0;
     }
-    
     div {
         position: absolute;
         display: block;
         overflow: hidden;
     }
-
+    #_preload_div_ {
+        box-sizing: border-box;
+        border: 1px solid black;
+    }
     :focus {
         outline: none;
-    }
-    
+    }    
     ::-moz-focus-inner {
         border: 0;
     }
@@ -44,8 +43,13 @@
     <!-- write your code here -->
 
     <script>
-    //set collapsed width and height
-    var collapsed = {width:'970px', height:'40px'};
+    //set collapsed state size and expand mode
+    //([AUTO]: start_expanded= true, [USER]: start_expanded = false)
+    var config = {
+        collapsed_width:'970px',
+        collapsed_height:'40px',
+        start_expanded: false
+    }
 
     //Initialize Enabler
     if (Enabler.isInitialized()) {
@@ -64,9 +68,10 @@
     }
 
     var loadedJsNum = 0;
+    var creativeName = "$TITLE";
     var jsObj = [
         "https://s0.2mdn.net/ads/studio/cached_libs/createjs_2015.11.26_54e1c3722102182bb133912ad4442e19_min.js",
-        Enabler.getUrl("$TITLE.js")
+        Enabler.getUrl(creativeName+".js")
     ];
 
     function politeInit() {
@@ -77,10 +82,7 @@
     }
 
     function checkLoaded() {
-
-        console.log("loaded: " + jsObj[loadedJsNum]);
         if (loadedJsNum == (jsObj.length - 1)) {
-
             //starts animation
             initCanvas();
         } else {
@@ -90,14 +92,10 @@
     }
 
     function loadJs(jsUrl) {
-
-        var extJavascript = document.createElement('script');
-        extJavascript.onload = function() {
-            checkLoaded();
-        };
-        extJavascript.src = jsUrl;
-        document.getElementsByTagName('head')[0].appendChild(extJavascript);
-
+        Enabler.loadScript(jsUrl, function(){
+                console.log("... " + jsUrl)
+                checkLoaded();
+            });
     }
 
     function bgExitExpandedHandler(e) {
@@ -111,70 +109,6 @@
         //Call Exits
         Enabler.exit('HTML5_Collapsed_Clickthrough');
     }
-
-function show() {
-    expandedContent.style.display = 'none';
-    expandedExit.style.display = 'none';
-    collapseButton.style.display = 'none';
-    collapsedContent.style.display = 'block';
-    collapsedExit.style.display = 'block';
-    expandButton.style.display = 'block';
-    anim_container.style.width = collapsed.width;
-    anim_container.style.height = collapsed.height;
-}
-function expandStartHandler() {
-    // Show expanded content.
-    expandedContent.style.display = 'block';
-    expandedExit.style.display = 'block';
-    collapseButton.style.display = 'block';
-    collapsedContent.style.display = 'none';
-    collapsedExit.style.display = 'none';
-    expandButton.style.display = 'none';
-    //
-    anim_container.style.width = '$WTpx';
-    anim_container.style.height = '$HTpx';
-
-    Enabler.finishExpand();
-}
-
-function expandFinishHandler() {
-    // creativeHasExpanded = true;
-}
-
-function collapseStartHandler() {
-    // Perform collapse animation.
-    expandedContent.style.display = 'none';
-    expandedExit.style.display = 'none';
-    collapseButton.style.display = 'none';
-    collapsedContent.style.display = 'block';
-    collapsedExit.style.display = 'block';
-    expandButton.style.display = 'block';
-    //
-    anim_container.style.width = collapsed.width;
-    anim_container.style.height = collapsed.height;
-
-    // When animation finished must call
-    Enabler.finishCollapse();
-}
-
-function collapseFinishHandler() {
-    // creativeHasExpanded = false;
-}
-
-function onCollapseClickHandler() {
-    Enabler.requestCollapse();
-    exportRoot.gotoAndPlay('collapsed');
-
-    Enabler.stopTimer('Panel Expansion');
-}
-
-function onExpandHandler() {
-    Enabler.requestExpand();
-    exportRoot.gotoAndPlay('expanded');
-
-    Enabler.startTimer('Panel Expansion');
-}
-
     </script>
 <!--
     $CENTER_STYLE
@@ -184,20 +118,11 @@ function onExpandHandler() {
 
     $SCRIPT_START 
 
-    var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+    var canvas, stage, exportRoot, dom_overlay_container, fnStartAnimation;
 
     function initCanvas() {
         canvas = document.getElementById("$CANVAS_ID");
-        anim_container = document.getElementById("$ANIM_CONTAINER_ID");
         dom_overlay_container = document.getElementById("dom_overlay_container");
-
-        expandedExit = document.getElementById('expanded-exit');
-        expandedContent = document.getElementById('expanded-state');
-        expandButton = document.getElementById('expand-button');
-        collapsedExit = document.getElementById('collapsed-exit');
-        collapsedContent = document.getElementById('collapsed-state');
-        collapseButton = document.getElementById('collapse-button');
-        Enabler.setStartExpanded(false);
 
         Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStartHandler);
         Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH, expandFinishHandler);
@@ -205,10 +130,8 @@ function onExpandHandler() {
         Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH, collapseFinishHandler);
         expandedExit.addEventListener('click', bgExitExpandedHandler);
         collapsedExit.addEventListener('click', bgExitCollapsedHandler);
-        expandButton.addEventListener('click', onExpandHandler, false);
+        expandButton.addEventListener('click', onExpandClickHandler, false);
         collapseButton.addEventListener('click', onCollapseClickHandler, false);
-
-        show();
 
         $CREATE_LOADER
         $LOAD_MANIFEST
@@ -223,8 +146,14 @@ function onExpandHandler() {
         //Registers the "tick" event listener.
         $START_ANIMATION        
         //Code to support hidpi screens and responsive scaling.
-        $RESP_HIDPI 
+        $RESP_HIDPI
+
+    Enabler.setStartExpanded(config.start_expanded);
+    setInitWrapperSize();
+    
+    // HANDLE_COMPLETE_END start
     $HANDLE_COMPLETE_END
+    // HANDLE_COMPLETE_END end
     $PLAYSOUND
     $SCRIPT_END
     
@@ -246,7 +175,87 @@ function onExpandHandler() {
     </div>
     $PRELOADER_DIV
     <script>
-        Enabler.setExpandingPixelOffsets(0, 0, $WT, $HT);
+
+    var
+    anim_container = document.getElementById("$ANIM_CONTAINER_ID"),
+    expandedExit = document.getElementById('expanded-exit'),
+    expandedContent = document.getElementById('expanded-state'),
+    expandButton = document.getElementById('expand-button'),
+    collapsedExit = document.getElementById('collapsed-exit'),
+    collapsedContent = document.getElementById('collapsed-state'),
+    collapseButton = document.getElementById('collapse-button');
+    
+    function expandStartHandler() {
+        // Perform expand animation.
+        exportRoot.gotoAndPlay('expanded');
+
+        expandWrapperSize();
+
+        Enabler.finishExpand();
+    }
+    function collapseStartHandler() {
+        // Perform collapse animation.
+        exportRoot.gotoAndPlay('collapsed');
+
+        collapseWrapperSize();
+
+        // When animation finished must call
+        Enabler.finishCollapse();
+    }
+
+    function expandFinishHandler() {
+    }
+    function collapseFinishHandler() {
+    }
+
+    function expandWrapperSize() {
+        expandedContent.style.display = 'block';
+        expandedExit.style.display = 'block';
+        collapseButton.style.display = 'block';
+        collapsedContent.style.display = 'none';
+        collapsedExit.style.display = 'none';
+        expandButton.style.display = 'none';
+        //
+        anim_container.style.width = '$WTpx';
+        anim_container.style.height = '$HTpx';
+    }
+    function collapseWrapperSize() {
+        expandedContent.style.display = 'none';
+        expandedExit.style.display = 'none';
+        collapseButton.style.display = 'none';
+        collapsedContent.style.display = 'block';
+        collapsedExit.style.display = 'block';
+        expandButton.style.display = 'block';
+        //
+        anim_container.style.width = config.collapsed_width;
+        anim_container.style.height = config.collapsed_height;
+    }
+
+    function onCollapseClickHandler() {
+        Enabler.requestCollapse();
+        Enabler.stopTimer('Panel Expansion');
+    }
+    function onExpandClickHandler() {
+        Enabler.requestExpand();
+        Enabler.startTimer('Panel Expansion');
+    }
+
+    function setInitWrapperSize(){
+        var p = document.getElementById("_preload_div_");
+        p.style.width = config.collapsed_width;
+        p.style.height = config.collapsed_height;
+        if(config.start_expanded == true) expandWrapperSize();    
+        else collapseWrapperSize();
+    }
+
+    function setInitAnimation(){
+        if(config.start_expanded == true) exportRoot.gotoAndPlay('expanded');
+        else exportRoot.gotoAndPlay('collapsed');
+    }
+
+    setInitWrapperSize();
+    Enabler.setExpandingPixelOffsets(0, 0, $WT, $HT);
+    
     </script>
 </body>
 </html>
