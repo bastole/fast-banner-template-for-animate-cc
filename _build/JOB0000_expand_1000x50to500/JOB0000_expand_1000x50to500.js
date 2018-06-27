@@ -293,8 +293,8 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"./bg_collapsed.jpg", id:"bg_collapsed"},
-		{src:"./bg_expanded.jpg", id:"bg_expanded"}
+		{src:"./bg_collapsed.jpg?1530067026048", id:"bg_collapsed"},
+		{src:"./bg_expanded.jpg?1530067026048", id:"bg_expanded"}
 	],
 	preloads: []
 };

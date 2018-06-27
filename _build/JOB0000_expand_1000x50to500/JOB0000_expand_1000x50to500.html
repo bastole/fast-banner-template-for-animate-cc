@@ -43,8 +43,8 @@
     //set collapsed state size and expand mode
     //([AUTO]: start_expanded= true, [USER]: start_expanded = false)
     var config = {
-        collapsed_width:'970px',
-        collapsed_height:'40px',
+        collapsed_width:'1000px',
+        collapsed_height:'50px',
         start_expanded: false
     }
     //Initialize Enabler
@@ -99,7 +99,7 @@
     </script>
 <!--
 <script src="./createjs-2015.11.26.min.js"></script>
-<script src="JOB0000_expand_1000x50to500.js"></script>    
+<script src="JOB0000_expand_1000x50to500.js?1530067026052"></script>    
  -->
     <script> 
     var canvas, stage, exportRoot, dom_overlay_container, fnStartAnimation;
@@ -135,6 +135,9 @@ function handleComplete(evt,comp) {
 	for(i=0; i<ssMetadata.length; i++) {
 		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
 	}
+	var preloaderDiv = document.getElementById("_preload_div_");
+	preloaderDiv.style.display = 'none';
+	canvas.style.display = 'block';
 	exportRoot = new lib.JOB0000_expand_1000x50to500();
 	stage = new lib.Stage(canvas);   
         //Registers the "tick" event listener.
@@ -169,8 +172,8 @@ function handleComplete(evt,comp) {
 			}			
 			canvas.width = w*pRatio*sRatio;			
 			canvas.height = h*pRatio*sRatio;
-			canvas.style.width = dom_overlay_container.style.width = anim_container.style.width =  w*sRatio+'px';				
-			canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = h*sRatio+'px';
+			canvas.style.width = anim_container.style.width = dom_overlay_container.style.width = preloaderDiv.style.width = w*sRatio+'px';				
+			canvas.style.height = anim_container.style.height = dom_overlay_container.style.height = preloaderDiv.style.height = h*sRatio+'px';
 			stage.scaleX = pRatio*sRatio;			
 			stage.scaleY = pRatio*sRatio;			
 			lastW = iw; lastH = ih; lastS = sRatio;            
@@ -191,8 +194,8 @@ function handleComplete(evt,comp) {
 </head>
 <body style="margin:0px;">
     <div id="animation_container" style="overflow: hidden; background-color:rgba(255, 255, 255, 1.00); width:1000px; height:500px">
-        <canvas id="canvas" width="1000" height="500" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);"></canvas>
-        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1000px; height:500px; position: absolute; left: 0px; top: 0px; display: block;">
+        <canvas id="canvas" width="1000" height="500" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+        <div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1000px; height:500px; position: absolute; left: 0px; top: 0px; display: none;">
         </div>
         <div id="collapsed-state" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; padding: 0; margin: 0; border: 0;">
             <button id="collapsed-exit" style="width:100%; height:100%; position: absolute; left: 0px; top: 0px; opacity: 0; padding: 0; margin: 0; border: 0; cursor: pointer; display: none;"></button>
@@ -203,6 +206,7 @@ function handleComplete(evt,comp) {
             <div id="collapse-button" class="button" style="top: 4px; right: 4px; display: none; background-color: rgba(0,0,0,0.8); color:white; cursor: pointer; border-radius: 20px; padding: 5px 8px; font-family: Arial, sans-serif; font-size: 13px;">X</div>
         </div>
     </div>
+    <div id='_preload_div_' style='position:absolute; top:0; left:0; display: inline-block; height:500px; width: 1000px; text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src=./_preloader.gif?1530067026053 style='vertical-align: middle; max-height: 100%'/></div>
     <script>
     var
     anim_container = document.getElementById("animation_container"),
